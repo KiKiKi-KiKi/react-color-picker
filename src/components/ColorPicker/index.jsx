@@ -8,7 +8,7 @@ const L_MAX = 200;
 export default function ColorPicker() {
   return (
     <div className="color-picker">
-      <HueGradPicker />
+      <HueGradPicker width={S_MAX} height={L_MAX} />
       <HuePicker width={S_MAX} height={20} />
     </div>
   );

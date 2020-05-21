@@ -7,7 +7,6 @@ import RGBSliders from './components/RGBSliders';
 import HSLSliders from './components/HSLSliders';
 import AlphaSlider from './components/AlphaSlider';
 
-
 export default function App() {
   const [color, dispatch] = useReducer(reducer, initialColorState);
 

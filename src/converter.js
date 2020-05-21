@@ -2,7 +2,6 @@ export const converter = {};
 
 const getHue = (min, max) => (r, g, b) => {
   if (min === max) {
-    console.log(min, max);
     return 0;
   }
 

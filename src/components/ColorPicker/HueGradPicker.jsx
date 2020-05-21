@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useCallback, useContext } from 'react';
-import ColotContext from '../context/color';
-import { RGB_TO_HSL } from '../reducers/color';
-import { fillCanvasByHue } from '../utils';
+import ColotContext from '../../context/color';
+import { RGB_TO_HSL } from '../../reducers/color';
+import { fillCanvasByHue } from '../../utils';
 
 const S_MAX = 100;
 const L_MAX = 100;
@@ -13,7 +13,7 @@ const InitCanvas = (canvas) => {
   return ctx;
 };
 
-export default function HuePicker() {
+export default function HueGradPicker() {
   const { color: { hsl }, dispatch } = useContext(ColotContext);
   const ref = useRef(null);
   const ctx = useRef();
@@ -69,7 +69,7 @@ export default function HuePicker() {
 
   return (
     <>
-      <div className="hue-picker">
+      <div className="hue-grad-picker">
         <canvas ref={ref} className="hue-grad-picker__canvas"></canvas>
       </div>
     </>

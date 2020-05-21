@@ -5,8 +5,8 @@ export const RGB_TO_HSL = 'RGB_TO_HSL';
 export const ALPHA = 'ALPHA';
 
 export const initialColorState = {
-  rgb: [0, 0, 0],
-  hsl: [0, 0, 0],
+  rgb: [128, 128, 128],
+  hsl: [0, 0, 50],
   alpha: 100,
 };
 

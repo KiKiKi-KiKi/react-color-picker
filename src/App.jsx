@@ -1,17 +1,22 @@
-import React from 'react';
-import ColorSlider from './components/Slider';
+import React, { useMemo, useReducer } from 'react';
+import ColorContext from './context/color';
+import reducer, { initialColorState } from './reducers/color';
+import HSLSliders from './components/HSLSliders';
+
+const rgbaStr = ({ rgb, alpha }) => {
+  return `rgba(${rgb.join(',')},${alpha / 100})`;
+};
 
 export default function App() {
+  const [color, dispatch] = useReducer(reducer, initialColorState);
+  const rgba = useMemo(() => rgbaStr(color), [color]);
+
   return (
     <>
-      <dl>
-        <dt>H</dt>
-        <dd><ColorSlider type="hue" value="0" /></dd>
-        <dt>S</dt>
-        <dd><ColorSlider type="saturation" value="0" /></dd>
-        <dt>B</dt>
-        <dd><ColorSlider type="brightness" value="0" /></dd>
-      </dl>
+      <span>{rgba}</span>
+      <ColorContext.Provider value={{ color, dispatch }}>
+        <HSLSliders />
+      </ColorContext.Provider>
     </>
   );
 }

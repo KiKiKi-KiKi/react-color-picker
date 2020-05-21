@@ -31,4 +31,32 @@ export const fillCanvasByHue = (ctx) => (hue) => {
   gradBlack.addColorStop(1, 'rgba(0, 0, 0, 1)');
   ctx.fillStyle = gradBlack;
   ctx.fillRect(0, 0, w, h);
-}
+};
+
+export const fillHueGradient = (ctx) => {
+  const w = ctx.canvas.width;
+  const h = ctx.canvas.height;
+  const grad = ctx.createLinearGradient(0, 0, w, 0);
+  grad.addColorStop(0, 'rgba(255, 0, 0, 1)');
+  grad.addColorStop(0.17, 'rgba(255, 255, 0, 1)');
+  grad.addColorStop(0.34, 'rgba(0, 255, 0, 1)');
+  grad.addColorStop(0.51, 'rgba(0, 255, 255, 1)');
+  grad.addColorStop(0.68, 'rgba(0, 0, 255, 1)');
+  grad.addColorStop(0.85, 'rgba(255, 0, 255, 1)');
+  grad.addColorStop(1, 'rgba(255, 0, 0, 1)');
+  ctx.fillStyle = grad;
+  ctx.fillRect(0, 0, w, h);
+  /*
+  const gradwhite = ctx.createLinearGradient(0, 0, 0, h);
+  gradwhite.addColorStop(0, 'rgba(255, 255, 255, 1)');
+  gradwhite.addColorStop(0.5, 'rgba(255, 255, 255, 0)');
+  ctx.fillStyle = gradwhite;
+  ctx.fillRect(0, 0, w, h);
+
+  const gradBlack = ctx.createLinearGradient(0, 0, 0, h);
+  gradBlack.addColorStop(0.5, 'rgba(0, 0, 0, 0)');
+  gradBlack.addColorStop(1, 'rgba(0, 0, 0, 1)');
+  ctx.fillStyle = gradBlack;
+  ctx.fillRect(0, 0, w, h);
+  */
+};

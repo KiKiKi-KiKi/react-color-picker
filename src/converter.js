@@ -122,3 +122,10 @@ converter.hsl_rgb = function (hsl) {
     return [r, g, b];
   }
 };
+
+converter.hsl_hex = (hsl) => {
+  const rgb = converter.hsl_rgb(hsl).map((val) => {
+    return `00${val.toString(16)}`.slice(-2);
+  });
+  return `#${rgb.join('')}`;
+};

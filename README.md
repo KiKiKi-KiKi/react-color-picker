@@ -7,6 +7,7 @@ ref.
   - https://www.npmjs.com/package/color-convert
 - https://support.microsoft.com/ja-jp/help/29240/how-to-converting-colors-between-rgb-and-hls-hbs
 - https://ja.wikipedia.org/wiki/HLS%E8%89%B2%E7%A9%BA%E9%96%93
+- https://codepen.io/amwill/pen/ZbdGeW?editors=0010
 
 ## Convert
 

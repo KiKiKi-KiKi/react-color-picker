@@ -1,7 +1,61 @@
 export const converter = {};
 
+const getHue = (min, max) => (r, g, b) => {
+  if (min === max) {
+    console.log(min, max);
+    return 0;
+  }
+
+  const delta = max - min;
+  let h;
+  switch (max) {
+    case r: {
+      h = (g - b) / delta;
+      break;
+    }
+    case g: {
+      h = 2 + (b - r) / delta;
+      break;
+    }
+    case b: {
+      h = 4 + (r - g) / delta;
+      break;
+    }
+    default:
+      return 0;
+  }
+
+  h = Math.min(h * 60, 360);
+  if (h < 0) {
+    h += 360;
+  }
+
+  return Math.round(h);
+};
+
+const getSaturation = (cnt, min, max) => {
+  let s;
+  if (min === max) {
+    return 0;
+  }
+  if (cnt < 128) {
+    s = (max - min) / (max + min);
+  } else {
+    s = (max - min) / (510 - max - min);
+  }
+  return Math.round(s * 100);
+};
+
 converter.rgb_hsl = function (rgb) {
   const [r, g, b] = rgb;
+  const max = Math.max(r, g, b);
+  const min = Math.min(r, g, b);
+  const cnt = (max + min) / 2;
+
+  const h = getHue(min, max)(r, g, b);
+  const s = getSaturation(cnt, min, max);
+  const l = Math.round((cnt / 255) * 100);
+  return [h, s, l];
 };
 
 const getMaxMin = ({ s, l }) => {

@@ -1,6 +1,7 @@
 import React, { useMemo, useReducer } from 'react';
 import ColorContext from './context/color';
 import reducer, { initialColorState } from './reducers/color';
+import RGBSliders from './components/RGBSliders';
 import HSLSliders from './components/HSLSliders';
 
 const rgbaStr = ({ rgb, alpha }) => {
@@ -15,6 +16,7 @@ export default function App() {
     <>
       <span>{rgba}</span>
       <ColorContext.Provider value={{ color, dispatch }}>
+        <RGBSliders />
         <HSLSliders />
       </ColorContext.Provider>
     </>

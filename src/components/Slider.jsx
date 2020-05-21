@@ -4,8 +4,7 @@ const formatValue = (max = 100) => (value) => {
   return value > max ? max : value < 0 ? 0 : value;
 };
 
-export default function Slider({ value, type, onChange }) {
-  const max = type === 'hue' ? 360 : 100;
+function Slider({ value, max, onChange }) {
   const val = formatValue(max)(value);
 
   return (
@@ -14,10 +13,19 @@ export default function Slider({ value, type, onChange }) {
         type="range"
         min="0"
         max={max}
-        onChange={onChange}
         defaultValue={val}
+        onChange={onChange}
       />
       <span>{val}</span>
     </>
   );
+}
+
+export function RGBSlider({ value, onChange }) {
+  return <Slider value={value} max="255" onChange={onChange} />;
+}
+
+export function HSLSlider({ value, type, onChange }) {
+  const max = type === 'hue' ? 360 : 100;
+  return <Slider value={value} max={max} onChange={onChange} />;
 }

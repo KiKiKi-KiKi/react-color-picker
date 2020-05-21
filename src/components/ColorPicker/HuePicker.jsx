@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useCallback, useContext } from 'react';
 import ColotContext from '../../context/color';
-import { RGB_TO_HSL } from '../../reducers/color';
+import { converter } from '../../converter';
+import { HSL_TO_RGB } from '../../reducers/color';
 import { fillHueGradient } from '../../utils';
 
 const InitCanvas = (canvas) => (width, height) => {
@@ -12,7 +13,7 @@ const InitCanvas = (canvas) => (width, height) => {
 };
 
 export default function HuePicker({ width, height }) {
-  const { dispatch } = useContext(ColotContext);
+  const { color: { hsl }, dispatch } = useContext(ColotContext);
   const ref = useRef(null);
   const ctx = useRef();
   const getCtx = useCallback(() => ctx.current, []);
@@ -24,9 +25,10 @@ export default function HuePicker({ width, height }) {
       const y = e.offsetY;
       const imageData = getCtx().getImageData(x, y, 1, 1).data;
       const rgb = [imageData[0], imageData[1], imageData[2]];
-      dispatch({ type: RGB_TO_HSL, rgb });
+      const [h, ..._] = converter.rgb_hsl(rgb);
+      dispatch({ type: HSL_TO_RGB, hsl: [h, hsl[1], hsl[2]] });
     },
-    [dispatch, getCtx],
+    [dispatch, getCtx, hsl],
   );
 
   const mousewDownHandler = useCallback(

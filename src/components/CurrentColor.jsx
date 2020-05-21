@@ -1,29 +1,18 @@
 import React, { useRef, useEffect, useCallback, useMemo } from 'react';
-
-const drawCanvas = (ctx) => (color) => {
-  const w = ctx.canvas.width;
-  const h = ctx.canvas.height;
-  ctx.clearRect(0, 0, w, h);
-  ctx.fillStyle = color;
-  ctx.fillRect(0, 0, w, h);
-};
-
-const rgbaStr = ({ rgb, alpha }) => {
-  return `rgba(${rgb.join(',')},${alpha / 100})`;
-};
+import { fillCanvas, rgbaStr } from '../utils';
 
 export default function CurrentColor({ color }) {
   const rgba = useMemo(() => rgbaStr(color), [color]);
   const ref = useRef(null);
   const ctx = useRef();
-  const getCtx = useCallback(() => ctx.current);
+  const getCtx = useCallback(() => ctx.current, []);
 
   useEffect(() => {
     ctx.current = ref.current.getContext('2d');
   }, []);
 
   useEffect(() => {
-    drawCanvas(getCtx())(rgba);
+    fillCanvas(getCtx())(rgba);
   }, [rgba, getCtx]);
 
   return (

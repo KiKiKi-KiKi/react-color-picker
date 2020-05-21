@@ -21,7 +21,7 @@ export default function RGBSliders() {
 
   return (
     <>
-      <dl>
+      <dl className="slider">
         <dt>R</dt>
         <dd>
           <RGBSlider type="red" value={r} onChange={onChange(0)} />

@@ -17,7 +17,7 @@ export default function AlphaSlider() {
 
   return (
     <>
-      <dl>
+      <dl className="slider">
         <dt>Alpha</dt>
         <dd>
           <input

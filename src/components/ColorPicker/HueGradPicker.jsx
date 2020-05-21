@@ -86,7 +86,7 @@ export default function HueGradPicker({ width, height }) {
   return (
     <>
       <div className="hue-grad-picker">
-        <canvas ref={ref} className="hue-grad-picker__canvas"></canvas>
+        <canvas ref={ref} className="hue-grad-picker__canvas canvas"></canvas>
       </div>
     </>
   );

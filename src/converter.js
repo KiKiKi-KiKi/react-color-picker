@@ -128,3 +128,10 @@ converter.hsl_hex = (hsl) => {
   });
   return `#${rgb.join('')}`;
 };
+
+converter.rgb_hex = (rgb) => {
+  const hex = rgb.map((val) => {
+    return `00${val.toString(16)}`.slice(-2);
+  }).join('');
+  return `#${hex}`;
+}

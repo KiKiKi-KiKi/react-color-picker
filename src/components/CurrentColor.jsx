@@ -1,8 +1,10 @@
 import React, { useRef, useEffect, useCallback, useMemo } from 'react';
 import { fillCanvas, rgbaStr } from '../utils';
+import { converter } from '../converter';
 
 export default function CurrentColor({ color }) {
   const rgba = useMemo(() => rgbaStr(color), [color]);
+  const hex = color.alpha === 100 ? converter.rgb_hex(color.rgb) : null;
   const ref = useRef(null);
   const ctx = useRef();
   const getCtx = useCallback(() => ctx.current, []);
@@ -18,9 +20,12 @@ export default function CurrentColor({ color }) {
   return (
     <>
       <div className="current-color">
-        <canvas className="current-color__canvas" ref={ref}></canvas>
+        <canvas className="current-color__canvas canvas" ref={ref}></canvas>
       </div>
-      <span className="current-color__label">{rgba}</span>
+      <div className="current-color__labels">
+        <span>{rgba}</span>
+        <span>{hex}</span>
+      </div>
     </>
   );
 }

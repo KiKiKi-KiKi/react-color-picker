@@ -21,7 +21,7 @@ export default function HSLSliders() {
 
   return (
     <>
-      <dl>
+      <dl className="slider">
         <dt>H</dt>
         <dd>
           <HSLSlider type="hue" value={h} onChange={onChange(0)} />
